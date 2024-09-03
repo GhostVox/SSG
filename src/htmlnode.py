@@ -1,6 +1,6 @@
 
 class HTMLNode ():
-    def __init__(self , tag=None , value=None , children=None , props=None):
+    def __init__(self , tag:str=None , value:str=None , children:list=None , props:dict=None):
         self.tag = tag # e.g "p" or "div"
         self.value = value # string representation of text in tag
         self.children = children  # a list of HTMLNode objects representing the children of this node
@@ -22,7 +22,7 @@ class LeafNode (HTMLNode):
     self_closing_elements =[
         "img"
     ]
-    def __init__(self ,tag, value ,props=None ):
+    def __init__(self ,tag:str, value:str ,props:dict=None ):
         super().__init__(tag,value,None , props)
       
        
@@ -45,7 +45,7 @@ class LeafNode (HTMLNode):
     
 
 class ParentNode(HTMLNode):
-    def __init__(self , tag ,children , props = None):
+    def __init__(self , tag:str ,children:list , props:dict = None):
         super().__init__(tag ,None, children ,props)
     
     def to_html(self):
