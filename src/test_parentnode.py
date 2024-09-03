@@ -35,7 +35,7 @@ class TestParentNode (unittest.TestCase):
         node4 = ParentNode("div",[self.children[1]] )
         node3.children = None
         node4.tag = None
-        self.assertEqual(node.to_html() , '<div class="container"><h1 class="header">Welcome to My Website</h1><p class="text-paragraph">This is a paragraph with some text.</p><img src="image.jpg" alt="An image"></img><a href="https://example.com" class="link-button">Click here</a></div>')
+        self.assertEqual(node.to_html() , '<div class="container"><h1 class="header">Welcome to My Website</h1><p class="text-paragraph">This is a paragraph with some text.</p><img src="image.jpg" alt="An image" /><a href="https://example.com" class="link-button">Click here</a></div>')
         self.assertEqual(node2.to_html(), '<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>')
         with self.assertRaises(ValueError):
             node3.to_html()
