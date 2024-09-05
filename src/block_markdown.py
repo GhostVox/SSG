@@ -108,7 +108,7 @@ def code_to_html_node(block: str) -> ParentNode:
         raise ValueError("Invalid code block format")
     
     text = block[3:-3].strip()  # Strip ``` from both ends
-    code_node = ParentNode("code", [LeafNode(text)], None)
+    code_node = ParentNode("code", [LeafNode("text",text)], None)
     return ParentNode("pre", [code_node], None)
 
 
