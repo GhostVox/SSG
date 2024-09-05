@@ -8,7 +8,7 @@ text_type_link = "link"
 text_type_image = "image"
 
 
-def split_nodes_delimiter(old_nodes:list, delimiter:str, text_type:str):
+def split_nodes_delimiter(old_nodes:list, delimiter:str, text_type:str)->list[TextNode]:
     new_nodes = []
     for old_node in old_nodes:
         if old_node.text_type != text_type_text or delimiter is None:
@@ -29,15 +29,15 @@ def split_nodes_delimiter(old_nodes:list, delimiter:str, text_type:str):
     return new_nodes     
 
 
-def extract_markdown_images(text:str)->list:
+def extract_markdown_images(text:str)->list[tuple]:
     images = findall(r"!\[(.*?)\]\((.*?)\)",text)
     return images
 
-def extract_markdown_links(text:str)->list:
+def extract_markdown_links(text:str)->list[tuple]:
     links = findall(r"\[(.*?)\]\((.*?)\)",text)
     return links
 
-def split_node_image(old_nodes:list):
+def split_node_image(old_nodes:list)->list[TextNode]:
     new_nodes = []
     for node in old_nodes:
         if node.text_type != text_type_text:
@@ -60,7 +60,7 @@ def split_node_image(old_nodes:list):
             new_nodes.append(TextNode(remaining_text,"text"))
     return new_nodes
 
-def split_node_link(old_nodes:list):
+def split_node_link(old_nodes:list) ->list[TextNode]:
     new_nodes = []
     
     for old_node in old_nodes:
@@ -85,7 +85,7 @@ def split_node_link(old_nodes:list):
             
     return new_nodes
 
-def text_to_textnodes(string:str):
+def text_to_textnodes(string:str) ->list[TextNode]:
     node = TextNode(string,"text")
     updated_node_list = []
     updated_node_list = split_nodes_delimiter([node],"**" , text_type_bold)
